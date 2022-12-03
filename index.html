@@ -19,7 +19,7 @@
   2. Change the onmouseover attribute to onclick and test it
   3. Remove the onclick attribute and go on to step 2
   -->
-  <p>How to play</p>
+  <p> How to Play! </p>
   <div class="drumset">
     <img class='drumset-part' id='hihat' src='images/hihat.png'>
     <img class='drumset-part' id='snare' src='images/snare.png'>
@@ -49,11 +49,14 @@
     3. Set the ptag object's onclick event handler property to an anon function that shows an alert with the instructions. 
     */
 
-   
+   const ptag = document.querySelector('p');
+   ptag.onclick = function() {
+    alert("Play some music");
+   }
 
-    function instructions() {
-      alert("Hover over a drum picture to play its sound. Type one of the keys on your keyboard to add guitar sounds");
-    }
+    // function instructions() {
+    //  alert("Hover over a drum picture to play its sound. Type one of the keys on your keyboard to add guitar sounds");
+    //}
 
     /* Exercise 3 
     Selecting elements we need from the DOM and assigning them a global variable:
@@ -61,19 +64,28 @@
     2. Use the forEach() method to loop through each drumset part and add an event listener for 'mouseover', have it call the playDrums function 
     */
     
+    const drums = document.querySelectorAll('.drumset-part')
+    drums.forEach(function (drum) {drum.addEventListener('mouseover', playDrums)
+  }) 
 
 
 
     /* Exercise 4
     1. Create a function called playDrums with one parameter - event
     2. Log the event parameter in the console, explore the properties you see there.
-    3. Use the currentTarget property to get the drum pics's id and assing it a variable
+    3. Use the currentTarget property to get the drum pics's id and assign it a variable
     4. Use querySelector or getElementById to get the cooresponding audio tag for the drum
     5. Set the audio's currentTime to 0
     6. Play the audio using play() method
     */
 
-    
+    function playDrums (event) {
+      console.log(event)
+      let drumid = event.currentTarget.id
+      let audio = document.getElementById(drumid + "-audio");
+      audio.currentTime = 0 
+      audio.play()
+    }
 
 
 
